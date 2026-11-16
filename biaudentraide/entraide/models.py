@@ -1,12 +1,12 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils import timezone
 
 class Skill(models.Model):
     name_skill = models.CharField(max_length=200)
 
     def __str__(self):
         return self.name_skill
-
 
 
 class User_Skill(models.Model):
@@ -30,3 +30,8 @@ class Schedule(models.Model):
     # Obligée de rajouter related_name car sinon ça plante comme j'ai DEUX users en clé étrangère
     user_helper = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name='helped_schedules' )
     #user_helper_username = models.CharField(max_length=200)
+
+    def __str__(self):
+        date_locale = timezone.localtime(self.date_help)
+        return self.name_activity+ " - " + date_locale.strftime("%d/%m/%Y à %Hh%M")
+
