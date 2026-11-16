@@ -1,0 +1,190 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="XmR4EFif1HwmZzz1XqH1">
+    <mxGraphModel dx="1261" dy="530" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="dAlKpmifASSzB-LTPj_l-8" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Président" vertex="1">
+          <mxGeometry height="60" width="30" x="60" y="387" as="geometry" />
+        </mxCell>
+        <mxCell id="dAlKpmifASSzB-LTPj_l-10" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" value="&lt;div style=&quot;color: rgb(8, 8, 8);&quot;&gt;&lt;pre style=&quot;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:7,5pt;&quot;&gt;&lt;br&gt;&lt;/pre&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" width="80" as="geometry">
+            <mxPoint x="80" y="148" as="sourcePoint" />
+            <mxPoint x="250" y="148" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dAlKpmifASSzB-LTPj_l-11" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" target="dAlKpmifASSzB-LTPj_l-9" value="">
+          <mxGeometry relative="1" width="80" as="geometry">
+            <mxPoint x="80" y="160" as="sourcePoint" />
+            <mxPoint x="250" y="160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dAlKpmifASSzB-LTPj_l-9" parent="1" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" value="" vertex="1">
+          <mxGeometry height="260" width="10" x="70" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="dAlKpmifASSzB-LTPj_l-12" parent="1" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;whiteSpace=wrap;" value="Navigateur" vertex="1">
+          <mxGeometry height="40" width="140" x="180" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dAlKpmifASSzB-LTPj_l-18" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" value="&lt;div style=&quot;color: rgb(8, 8, 8);&quot;&gt;&lt;pre style=&quot;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:7,5pt;&quot;&gt;&lt;pre style=&quot;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:7,5pt;&quot;&gt;Vue &quot;show_schedule_searched&quot;&lt;/pre&gt;&lt;/pre&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" width="80" as="geometry">
+            <mxPoint x="255" y="147" as="sourcePoint" />
+            <mxPoint x="465" y="147" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dAlKpmifASSzB-LTPj_l-19" parent="1" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;whiteSpace=wrap;" value="Django (views)" vertex="1">
+          <mxGeometry height="40" width="140" x="402" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dAlKpmifASSzB-LTPj_l-21" edge="1" parent="1" style="endArrow=block;startArrow=none;endFill=0;startFill=0;endSize=8;html=1;verticalAlign=bottom;dashed=1;labelBackgroundColor=none;rounded=0;" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="470" y="170" as="sourcePoint" />
+            <mxPoint x="250" y="170" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dAlKpmifASSzB-LTPj_l-22" edge="1" parent="1" style="endArrow=block;startArrow=none;endFill=0;startFill=0;endSize=8;html=1;verticalAlign=bottom;dashed=1;labelBackgroundColor=none;rounded=0;" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="245" y="171" as="sourcePoint" />
+            <mxPoint x="80" y="171" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dAlKpmifASSzB-LTPj_l-23" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Affiche le template avec la liste des&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;créneaux recherchés&lt;/span&gt;" vertex="1">
+          <mxGeometry height="30" width="140" x="90" y="177" as="geometry" />
+        </mxCell>
+        <mxCell id="dAlKpmifASSzB-LTPj_l-24" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Lien &quot;Afficher les créneaux recherchés&quot;" vertex="1">
+          <mxGeometry height="30" width="155" x="90" y="115" as="geometry" />
+        </mxCell>
+        <mxCell id="dAlKpmifASSzB-LTPj_l-27" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" value="&lt;div style=&quot;color: rgb(8, 8, 8);&quot;&gt;&lt;pre style=&quot;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:7,5pt;&quot;&gt;&lt;pre style=&quot;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:7,5pt;&quot;&gt;&lt;div&gt;&lt;pre style=&quot;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:7,5pt;&quot;&gt;POST, Vue &quot;save_schedule_response&quot;&lt;/pre&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/pre&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" width="80" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="250" y="333" as="sourcePoint" />
+            <mxPoint x="470" y="333" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dAlKpmifASSzB-LTPj_l-31" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" value="&lt;div style=&quot;color: rgb(8, 8, 8);&quot;&gt;&lt;pre style=&quot;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:7,5pt;&quot;&gt;&lt;pre style=&quot;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:7,5pt;&quot;&gt;&lt;div&gt;&lt;pre style=&quot;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:7,5pt;&quot;&gt;Clic &quot;Je suis disponible&quot; &lt;br&gt;sur l&#39;un des créneaux&lt;br&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/pre&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" width="80" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="80" y="333" as="sourcePoint" />
+            <mxPoint x="250" y="333" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dAlKpmifASSzB-LTPj_l-33" parent="1" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;whiteSpace=wrap;" value="SQLite DB" vertex="1">
+          <mxGeometry height="40" width="100" x="690" y="29" as="geometry" />
+        </mxCell>
+        <mxCell id="dAlKpmifASSzB-LTPj_l-35" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" value="&lt;div style=&quot;color: rgb(8, 8, 8);&quot;&gt;&lt;pre style=&quot;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:7,5pt;&quot;&gt;&lt;pre style=&quot;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:7,5pt;&quot;&gt;&lt;div&gt;&lt;pre style=&quot;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:7,5pt;&quot;&gt;Modifie le model Schedule&lt;/pre&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/pre&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" width="80" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="472" y="333" as="sourcePoint" />
+            <mxPoint x="630" y="333" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dAlKpmifASSzB-LTPj_l-37" parent="1" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;whiteSpace=wrap;" value="Model&lt;div&gt;Classe Schedule&lt;/div&gt;" vertex="1">
+          <mxGeometry height="40" width="100" x="570" y="29" as="geometry" />
+        </mxCell>
+        <mxCell id="dAlKpmifASSzB-LTPj_l-39" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" value="&lt;div style=&quot;color: rgb(8, 8, 8);&quot;&gt;&lt;pre style=&quot;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:7,5pt;&quot;&gt;&lt;pre style=&quot;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:7,5pt;&quot;&gt;Récupère les schedules &lt;br&gt;correspondant&lt;br&gt;&lt;/pre&gt;&lt;/pre&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" width="80" as="geometry">
+            <mxPoint x="480" y="147" as="sourcePoint" />
+            <mxPoint x="630" y="147" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dAlKpmifASSzB-LTPj_l-40" parent="1" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;whiteSpace=wrap;" value="SQLite DB" vertex="1">
+          <mxGeometry height="40" width="100" x="700" y="421" as="geometry" />
+        </mxCell>
+        <mxCell id="dAlKpmifASSzB-LTPj_l-41" parent="1" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;whiteSpace=wrap;" value="Model&amp;nbsp;&lt;div&gt;Classe Schedule&lt;/div&gt;" vertex="1">
+          <mxGeometry height="40" width="100" x="580" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="dAlKpmifASSzB-LTPj_l-42" parent="1" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;whiteSpace=wrap;" value="Django (views)" vertex="1">
+          <mxGeometry height="40" width="140" x="402" y="421" as="geometry" />
+        </mxCell>
+        <mxCell id="dAlKpmifASSzB-LTPj_l-43" parent="1" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;whiteSpace=wrap;" value="Navigateur" vertex="1">
+          <mxGeometry height="40" width="140" x="190" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="dAlKpmifASSzB-LTPj_l-44" edge="1" parent="1" style="endArrow=block;startArrow=none;endFill=0;startFill=0;endSize=8;html=1;verticalAlign=bottom;dashed=1;labelBackgroundColor=none;rounded=0;" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="630" y="170" as="sourcePoint" />
+            <mxPoint x="475" y="170" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dAlKpmifASSzB-LTPj_l-47" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Affiche de nouveau la page avec un message de confirmation" vertex="1">
+          <mxGeometry height="30" width="165" x="80" y="359" as="geometry" />
+        </mxCell>
+        <mxCell id="puSGdTtdB1SXsptapemx-2" edge="1" parent="1" source="dAlKpmifASSzB-LTPj_l-42" style="endArrow=none;dashed=1;html=1;rounded=0;defaultLabelBackgroundColor=page;labelPadding=0 4;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" target="dAlKpmifASSzB-LTPj_l-19" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="390" y="300" as="sourcePoint" />
+            <mxPoint x="440" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="puSGdTtdB1SXsptapemx-3" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;rounded=0;defaultLabelBackgroundColor=page;labelPadding=0 4;entryX=0.594;entryY=0.985;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryPerimeter=0;" target="dAlKpmifASSzB-LTPj_l-37" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="631" y="419" as="sourcePoint" />
+            <mxPoint x="629" y="78" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="puSGdTtdB1SXsptapemx-4" edge="1" parent="1" source="dAlKpmifASSzB-LTPj_l-34" style="endArrow=none;dashed=1;html=1;rounded=0;defaultLabelBackgroundColor=page;labelPadding=0 4;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="751" y="421" as="sourcePoint" />
+            <mxPoint x="751" y="70" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="puSGdTtdB1SXsptapemx-5" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;labelPerimeter=1;" value="Utilisateur&lt;div&gt;connecté&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="30" x="60" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="puSGdTtdB1SXsptapemx-6" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;rounded=0;defaultLabelBackgroundColor=page;labelPadding=0 4;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="250" y="420" as="sourcePoint" />
+            <mxPoint x="250" y="69" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="puSGdTtdB1SXsptapemx-7" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" value="&lt;div style=&quot;color: rgb(8, 8, 8);&quot;&gt;&lt;pre style=&quot;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:7,5pt;&quot;&gt;&lt;pre style=&quot;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:7,5pt;&quot;&gt;&lt;br&gt;&lt;/pre&gt;&lt;/pre&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" width="80" as="geometry">
+            <mxPoint x="630" y="148" as="sourcePoint" />
+            <mxPoint x="750" y="148" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="puSGdTtdB1SXsptapemx-9" edge="1" parent="1" style="endArrow=block;startArrow=none;endFill=0;startFill=0;endSize=8;html=1;verticalAlign=bottom;dashed=1;labelBackgroundColor=none;rounded=0;" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="750" y="170" as="sourcePoint" />
+            <mxPoint x="630" y="170" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="puSGdTtdB1SXsptapemx-12" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;rounded=0;defaultLabelBackgroundColor=page;labelPadding=0 4;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" target="dAlKpmifASSzB-LTPj_l-34" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="751" y="421" as="sourcePoint" />
+            <mxPoint x="751" y="70" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dAlKpmifASSzB-LTPj_l-34" parent="1" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" value="" vertex="1">
+          <mxGeometry height="60" width="10" x="745" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="puSGdTtdB1SXsptapemx-13" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" value="&lt;div style=&quot;color: rgb(8, 8, 8);&quot;&gt;&lt;pre style=&quot;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:7,5pt;&quot;&gt;&lt;pre style=&quot;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:7,5pt;&quot;&gt;&lt;br&gt;&lt;/pre&gt;&lt;/pre&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" width="80" as="geometry">
+            <mxPoint x="628" y="333" as="sourcePoint" />
+            <mxPoint x="748" y="333" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="puSGdTtdB1SXsptapemx-14" edge="1" parent="1" style="endArrow=block;startArrow=none;endFill=0;startFill=0;endSize=8;html=1;verticalAlign=bottom;dashed=1;labelBackgroundColor=none;rounded=0;" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="748" y="350" as="sourcePoint" />
+            <mxPoint x="628" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="puSGdTtdB1SXsptapemx-15" edge="1" parent="1" style="endArrow=block;startArrow=none;endFill=0;startFill=0;endSize=8;html=1;verticalAlign=bottom;dashed=1;labelBackgroundColor=none;rounded=0;" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="625" y="350" as="sourcePoint" />
+            <mxPoint x="470" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="puSGdTtdB1SXsptapemx-16" edge="1" parent="1" style="endArrow=block;startArrow=none;endFill=0;startFill=0;endSize=8;html=1;verticalAlign=bottom;dashed=1;labelBackgroundColor=none;rounded=0;" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="470" y="350" as="sourcePoint" />
+            <mxPoint x="250" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="puSGdTtdB1SXsptapemx-18" edge="1" parent="1" style="endArrow=block;startArrow=none;endFill=0;startFill=0;endSize=8;html=1;verticalAlign=bottom;dashed=1;labelBackgroundColor=none;rounded=0;" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="245" y="350" as="sourcePoint" />
+            <mxPoint x="80" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
