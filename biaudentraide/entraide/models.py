@@ -21,6 +21,7 @@ class Schedule(models.Model):
 
     # Si je supprime l'utilisateur ça supprimera les schedules associés
     # Obligée de rajouter related_name car sinon ça plante comme j'ai DEUX users en clé étrangère
+    # (en fait django crée un nom inverse et comme j'ai DEUX users à l'inverse dans user on se retrouve avec deux fois le même nom)
     user_creator = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name='created_schedules' )
     # user_creator_first_name = models.CharField(max_length=200)
     # user_creator_last_name = models.CharField(max_length=200)
@@ -34,4 +35,3 @@ class Schedule(models.Model):
     def __str__(self):
         date_locale = timezone.localtime(self.date_help)
         return self.name_activity+ " - " + date_locale.strftime("%d/%m/%Y à %Hh%M")
-
