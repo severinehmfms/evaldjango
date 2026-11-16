@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
 
+
 class Skill(models.Model):
     name_skill = models.CharField(max_length=200)
 
@@ -9,13 +10,15 @@ class Skill(models.Model):
         return self.name_skill
 
 
-class User_Skill(models.Model):
+class UserSkill(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     skill = models.ForeignKey(Skill, on_delete=models.CASCADE)
 
+
 class Schedule(models.Model):
     # status ?
-    skill = models.ForeignKey(Skill, on_delete=models.CASCADE)  # Si je supprime la compétence ça supprimera les schedules associés
+    # Si je supprime la compétence ça supprimera les schedules associés
+    skill = models.ForeignKey(Skill, on_delete=models.CASCADE)
     name_activity = models.CharField(max_length=200)
     date_help = models.DateTimeField("Créneau")
 
