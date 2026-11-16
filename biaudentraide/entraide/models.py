@@ -4,6 +4,11 @@ from django.db import models
 class Skill(models.Model):
     name_skill = models.CharField(max_length=200)
 
+    def __str__(self):
+        return self.name_skill
+
+
+
 class User_Skill(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     skill = models.ForeignKey(Skill, on_delete=models.CASCADE)
