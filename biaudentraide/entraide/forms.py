@@ -21,7 +21,7 @@ Formulaire pour les créneaux d'activité
 class ScheduleForm(forms.Form):
 
     name_activity = forms.CharField(
-        label="Activité",
+        label="Activité prévue",
         max_length=200,
         validators=[
             MaxLengthValidator(200)
@@ -51,8 +51,6 @@ class ScheduleForm(forms.Form):
         super().__init__(*args, **kwargs)
 
         if (user_connected):
-            # print(f"User connected bien récupéré {user_connected.username}")
-
             # On récupère les compétences que possède l'utilisateur connecté
             skill_existing = UserSkill.objects.filter(user=user_connected).values_list('skill_id', flat=True)
 
