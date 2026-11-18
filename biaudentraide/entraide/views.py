@@ -1,6 +1,7 @@
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
+from django.http import request
 from django.shortcuts import render, redirect
 from django.contrib import messages
 
@@ -9,9 +10,24 @@ from django.views import generic
 from entraide.models import Skill, UserSkill
 
 
-# Vue générique pour la page index (qui affiche la liste des compétences)
-class IndexView(generic.ListView):
-    template_name = "entraide/index.html"
+
+# Vue index
+def index(request):
+    """
+        user_connecte = request.user
+        if (user_connecte.is_authenticated):
+    """
+    # latest_question_list = Question.objects.order_by("-pub_date")[:5]
+    # context = {"latest_question_list": latest_question_list}
+    context = {"test": "test"}
+    # template = loader.get_template("polls/index.html")
+    # return HttpResponse(template.render(context, request))
+    # Raccourci pour les deux dernières lignes commentées :
+    return render(request, "entraide/index.html", context)
+
+# Vue générique pour la page d'affichage des compétences
+class SkillsView(generic.ListView):
+    template_name = "entraide/allskills.html"
     context_object_name = "skill_list"
 
     def get_queryset(self):
