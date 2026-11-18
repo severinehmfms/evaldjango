@@ -26,5 +26,6 @@ class ScheduleForm(forms.Form):
         )
     )
 
+    # TODO Il faut pouvoir choisir ici UNIQUEMENT les compétences que l'utilisateur n'a pas !
     skill = forms.ModelChoiceField(queryset=Skill.objects.all(), label="Choisir la compétence requise pour cette activité")
 
