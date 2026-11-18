@@ -87,7 +87,7 @@ def addschedule_view(request):
 
     if request.method == "POST":
 
-        form = ScheduleForm(request.POST)
+        form = ScheduleForm(request.POST,user_connected=request.user)
 
         if form.is_valid():
 
@@ -113,7 +113,7 @@ def addschedule_view(request):
             # En utilisant le raccourci de from django.shortcuts import redirect
             return redirect("entraide:index")
     else:
-        form = ScheduleForm()
+        form = ScheduleForm(user_connected=request.user)
 
     return render(
         request,
