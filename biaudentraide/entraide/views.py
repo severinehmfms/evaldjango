@@ -1,9 +1,9 @@
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
-from django.http import request
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.utils import timezone
 
 from django.views import generic
 
@@ -34,6 +34,24 @@ class SkillsView(generic.ListView):
         return Skill.objects.order_by("name_skill")
 
 
+def showschedules_view(request):
+
+    # schedules_list = Schedule.objects.all().order_by("-date_help")
+
+    # On récupère la liste des schédules dont la date_help est après la date du jour.
+    schedules_list = Schedule.objects.filter(date_help__gte=timezone.now()).order_by("-date_help")
+
+
+    # on verra plus tard... Si l'utilisateur est connecté on va récupérer la liste de ses créneaux
+
+    # Si c'est un visiteur, on va récupérer tous les prochains créneaux (en anomysant les personnes)
+
+
+
+    context = {"schedules_list": schedules_list}
+    return render(request, "entraide/showschedules.html", context)
+
+
 """
 Vue pour afficher la page de mise à jour des compétences de l'utilisateur
 """
@@ -57,7 +75,7 @@ def majskills_view(request):
         UserSkill.objects.filter(user=user_connecte).delete()
 
         # On va enregistrer les nouvelles compétences cochées
-        for skill_id in request.POST.getlist("skill_chk"):
+        for skill_id in skill_chk:
             UserSkill.objects.create(user=user_connecte, skill=Skill.objects.get(id=int(skill_id)))
 
         # On retourne sur la page index.html,en rajoutant un message de confirmation
@@ -101,7 +119,7 @@ def addschedule_view(request):
             date_help = form.cleaned_data["date_help"]
 
             # Création du schedule
-            schedule = Schedule.objects.create(
+            Schedule.objects.create(
                 skill=skill,
                 name_activity=name_activity,
                 date_help=date_help

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %} Liste des créneaux {% endblock %}
+
+{% block main %}
+
+    {% if schedules_list %}
+        <div>
+        {% for schedule in schedules_list %}
+            <p> Compétence requise : {{ schedule.skill.name_skill }} </p>
+            <p> Activité prévue : {{ schedule.name_activity }} </p>
+            <p> Date prévue : {{ schedule.date_help }} </p>
+        {% endfor %}
+        </div>
+    {% else %}
+        <p>Aucun créneau n'est renseigné pour l'instant.</p>
+    {% endif %}
+
+{% endblock %}
