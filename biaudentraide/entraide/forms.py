@@ -3,10 +3,21 @@ from django.core.exceptions import ValidationError
 from django.core.validators import MaxLengthValidator
 from django.db.models import Model
 from django.http import request
+from django.utils import timezone
 
 from entraide.models import Skill, UserSkill
 
+"""
+Fonction pour le Validator qui vérifie que la date choisie est bein dans le futur
+"""
+def verif_date_future(value):
+    if value < timezone.now():
+        raise ValidationError(("Le créneau doit être dans le futur."))
 
+
+"""
+Formulaire pour les créneaux d'activité
+"""
 class ScheduleForm(forms.Form):
 
     name_activity = forms.CharField(
@@ -17,7 +28,6 @@ class ScheduleForm(forms.Form):
         ],
     )
 
-    # TODO Rajouter un validator pour vérifier que la date est bien dans le futur !
     date_help = forms.DateTimeField(
         label="Choisir la date prévue pour l'activité",
         required=True,
@@ -25,7 +35,10 @@ class ScheduleForm(forms.Form):
         widget=forms.DateTimeInput(
             format="%Y-%m-%dT%H:%M",
             attrs={"type": "datetime-local"}
-        )
+        ),
+        validators=[
+            verif_date_future
+        ],
     )
 
     # On crée dans un premier temps une liste déroulante avec TOUTES les compétences
