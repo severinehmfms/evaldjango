@@ -27,7 +27,9 @@
             <nav>
                 {% block menu %}
                     {% if user.is_authenticated %}
-                         <a href="{% url 'entraide:majskills' %}">Définir mes compétences</a>
+                        <a href="{% url 'entraide:majskills' %}">Définir mes compétences</a>
+
+                        <a href="{% url 'entraide:addschedule' %}">Ajouter un créneau d'activité </a>
                     {% else %}
                         <a href="{% url 'entraide:allskills' %}">Liste des compétences proposées</a>
                     {% endif %}
