@@ -1,3 +1,5 @@
+from selectors import SelectSelector
+
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
@@ -26,18 +28,17 @@ class SkillsView(generic.ListView):
 
 
 def showschedules_view(request):
-
     # schedules_list = Schedule.objects.all().order_by("-date_help")
 
-    # On récupère la liste des schédules dont la date_help est après la date du jour.
-    schedules_list = Schedule.objects.filter(date_help__gte=timezone.now()).order_by("-date_help")
+    user_connecte = request.user
 
+    # Si l'utilisateur est connecté on va récupérer la liste des créneaux qu'il a créé
+    if (user_connecte.is_authenticated):
+        schedules_list = Schedule.objects.filter(user_creator=user_connecte).filter(date_help__gte=timezone.now()).order_by("-date_help")
 
-    # on verra plus tard... Si l'utilisateur est connecté on va récupérer la liste de ses créneaux
-
-    # Si c'est un visiteur, on va récupérer tous les prochains créneaux (en anomysant les personnes)
-
-
+    # Si c'est un visiteur, on va récupérer tous les prochains créneaux (on anomysera les personnes dans le template)
+    else:
+        schedules_list = Schedule.objects.filter(date_help__gte=timezone.now()).order_by("-date_help")
 
     context = {"schedules_list": schedules_list}
     return render(request, "entraide/showschedules.html", context)
