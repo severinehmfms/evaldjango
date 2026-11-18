@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %} Mise à jour des compétences {% endblock %}
+
+
+{% block main %}
+
+    <!--{% if skill_list %}
+        <ul>
+        {% for skill in skill_list %}
+            <li>{{ skill.name_skill }}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No skill are available.</p>
+    {% endif %}
+
+    {% if skills_existing %}
+        skills_existing :
+        <ul>
+        {% for us in skills_existing %}
+            <li>{{ us.skill.name_skill }} - {{ us.skill.id }}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No skill are available for this user.</p>
+    {% endif %}-->
+
+    <form action="{% url 'entraide:majskills' %}" method="post">
+        {% csrf_token %}
+
+        {% if skill_list %}
+            <label for="skill_chk">Compétences :</label><br/>
+            {% for skillch in skill_list %}
+                {{ skillch.id }} - {{ skillch.name_skill }}
+                <input type="checkbox" name="skill_chk" value="{{ skillch.id }}" {% if skillch.id in skills_existing_ids %} checked  {% endif %}><br/>
+            {% endfor %}
+
+        {% else %}
+            <p>No skill are available.</p>
+        {% endif %}
+        <br/><br/>
+        <input type="submit" value="valider"/>
+    </form>
+
+{% endblock %}
