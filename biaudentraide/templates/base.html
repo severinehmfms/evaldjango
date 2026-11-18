@@ -30,8 +30,16 @@
                         <a href="{% url 'entraide:majskills' %}">Définir mes compétences</a>
 
                         <a href="{% url 'entraide:addschedule' %}">Ajouter un créneau d'activité </a>
+
+                        <a href="{% url 'entraide:showschedules' %}">Voir mes créneaux </a>
+
+                        <a href="{% url 'entraide:showschedules' %}">Voir les prochains créneaux demandés </a>
+
                     {% else %}
                         <a href="{% url 'entraide:allskills' %}">Liste des compétences proposées</a>
+
+                        <a href="{% url 'entraide:showschedules' %}">Voir les prochains créneaux réservés</a>
+
                     {% endif %}
                 {% endblock %}
             </nav>
