@@ -7,7 +7,8 @@ from django.contrib import messages
 
 from django.views import generic
 
-from entraide.models import Skill, UserSkill
+from entraide.forms import ScheduleForm
+from entraide.models import Skill, UserSkill, Schedule
 
 
 def index(request):
@@ -77,6 +78,48 @@ def majskills_view(request):
             'skills_existing_ids': skills_existing_ids,
         })
 
+
+"""
+Vue pour permettre à l'utilisateur de créer un créneau pour une activité 
+"""
+@login_required
+def addschedule_view(request):
+
+    if request.method == "POST":
+
+        form = ScheduleForm(request.POST)
+
+        if form.is_valid():
+
+            # Récupération de la compétence requise
+            skill = form.cleaned_data["skill"]
+
+            # Récupération de l'intitulé de l'activité
+            name_activity = form.cleaned_data["name_activity"]
+
+            # Récupération du créneau (date)
+            date_help = form.cleaned_data["date_help"]
+
+            # Création du schedule
+            schedule = Schedule.objects.create(
+                skill=skill,
+                name_activity=name_activity,
+                date_help=date_help
+            )
+
+            messages.success(request, "Le créneau a bien été ajouté.")
+            # Sans le raccourci
+            # return HttpResponseRedirect(reverse("polls:index"))
+            # En utilisant le raccourci de from django.shortcuts import redirect
+            return redirect("entraide:index")
+    else:
+        form = ScheduleForm()
+
+    return render(
+        request,
+        "entraide/addschedule.html",
+        {"form": form}
+    )
 
 
 def login_view(request):
