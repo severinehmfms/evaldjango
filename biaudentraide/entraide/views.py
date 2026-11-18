@@ -4,14 +4,17 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
 
+from django.views import generic
+
 from entraide.models import Skill
 
+# Vue générique pour la page index (qui affiche la liste des compétences)
+class IndexView(generic.ListView):
+    template_name = "entraide/index.html"
+    context_object_name = "skill_list"
 
-def index(request):
-    skill_list = Skill.objects.order_by("name_skill")
-    template = loader.get_template("entraide/index.html")
-    context = {"skill_list": skill_list}
-    return HttpResponse(template.render(context, request))
+    def get_queryset(self):
+        return Skill.objects.order_by("name_skill")
 
 def login_view(request):
 
