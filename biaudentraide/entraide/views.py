@@ -122,7 +122,8 @@ def addschedule_view(request):
             Schedule.objects.create(
                 skill=skill,
                 name_activity=name_activity,
-                date_help=date_help
+                date_help=date_help,
+                user_creator=request.user
             )
 
             messages.success(request, "Le créneau a bien été ajouté.")
