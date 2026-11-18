@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %} Liste des compétences proposées {% endblock %}
+
+{% block main %}
+
+    {% if skill_list %}
+        <ul>
+        {% for skill in skill_list %}
+            <li>{{ skill.name_skill }}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Aucune compétence n'a été renseignée, merci de contacter l'administrateur du site.</p>
+    {% endif %}
+
+{% endblock %}
