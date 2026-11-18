@@ -7,15 +7,20 @@
 
 {% block main %}
 
-    {% if skill_list %}
-        <ul>
-        {% for skill in skill_list %}
-            <li>{{ skill.name_skill }}
-            </li>
-        {% endfor %}
-        </ul>
+    {% if user.is_authenticated %}
+        Vous êtes bien authentifié !
+
     {% else %}
-        <p>No skill are available.</p>
+        {% if skill_list %}
+            <ul>
+            {% for skill in skill_list %}
+                <li>{{ skill.name_skill }}
+                </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No skill are available.</p>
+        {% endif %}
     {% endif %}
 
 {% endblock %}
