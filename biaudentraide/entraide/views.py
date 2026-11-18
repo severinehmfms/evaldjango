@@ -10,18 +10,9 @@ from django.views import generic
 from entraide.forms import ScheduleForm
 from entraide.models import Skill, UserSkill, Schedule
 
-
+# TODO Voir la page d'accueil !
 def index(request):
-    """
-        user_connecte = request.user
-        if (user_connecte.is_authenticated):
-    """
-    # latest_question_list = Question.objects.order_by("-pub_date")[:5]
-    # context = {"latest_question_list": latest_question_list}
     context = {"test": "test"}
-    # template = loader.get_template("polls/index.html")
-    # return HttpResponse(template.render(context, request))
-    # Raccourci pour les deux dernières lignes commentées :
     return render(request, "entraide/index.html", context)
 
 
