@@ -40,9 +40,10 @@ class ScheduleForm(forms.Form):
     skill = forms.ModelChoiceField(queryset=Skill.objects.all(),
                                    label="Choisir la compétence requise pour cette activité")
 
-    # On rajoute cette fonction d'initialisation (pour notre formulaire)
-    # pour pouvoir envoyer des arguments au formulaire (dans mon cas : l'utilisateur connecté!)
     def __init__(self, *args, **kwargs):
+        # On rajoute cette fonction d'initialisation (pour notre formulaire)
+        # pour pouvoir envoyer des arguments au formulaire (dans mon cas : l'utilisateur connecté!)
+
         # On récupère l'utilisateur passé depuis la vue
         user_connected = kwargs.pop('user_connected', None)
         super().__init__(*args, **kwargs)
