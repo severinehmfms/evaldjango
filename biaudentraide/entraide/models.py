@@ -3,6 +3,9 @@ from django.db import models
 from django.utils import timezone
 
 
+"""
+* Modèle Skill (compétence)
+"""
 class Skill(models.Model):
     name_skill = models.CharField(max_length=200)
 
@@ -10,10 +13,19 @@ class Skill(models.Model):
         return self.name_skill
 
 
+"""
+* Modèle UserSkill représente une compétence associée à un utilisateur
+"""
 class UserSkill(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     skill = models.ForeignKey(Skill, on_delete=models.CASCADE)
 
+
+"""
+* Représente un créneau pour une activité donnée.
+* Dans le futur, on pourra modifier et au lieu d'avoir juste une date d'avoir une heure de départ et heure de fin
+* On pourra également avoir une activité à vide pour différencier un créneau pour une activité donnée, d'un créneau disponible pour aider les autres
+"""
 
 class Schedule(models.Model):
     # status ?
