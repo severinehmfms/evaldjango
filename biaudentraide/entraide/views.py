@@ -2,8 +2,7 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpResponseRedirect
-from django.template import loader
+from django.contrib import messages
 
 from django.views import generic
 
@@ -39,9 +38,8 @@ def majskills_view(request):
         for skill_id in request.POST.getlist("skill_chk"):
             UserSkill.objects.create(user=user_connecte, skill=Skill.objects.get(id=int(skill_id)))
 
-        # On retourne sur la page index.html,
-        # TODO rajouter message
-        #messages.success(request, "Les compétences ont bien été mises à jour.")
+        # On retourne sur la page index.html,en rajoutant un message de confirmation
+        messages.success(request, "Les compétences ont bien été mises à jour.")
 
         # Redirection sur la page d'index
         return redirect("entraide:index")
