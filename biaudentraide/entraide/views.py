@@ -10,8 +10,6 @@ from django.views import generic
 from entraide.models import Skill, UserSkill
 
 
-
-# Vue index
 def index(request):
     """
         user_connecte = request.user
@@ -25,6 +23,7 @@ def index(request):
     # Raccourci pour les deux dernières lignes commentées :
     return render(request, "entraide/index.html", context)
 
+
 # Vue générique pour la page d'affichage des compétences
 class SkillsView(generic.ListView):
     template_name = "entraide/allskills.html"
@@ -34,6 +33,9 @@ class SkillsView(generic.ListView):
         return Skill.objects.order_by("name_skill")
 
 
+"""
+Vue pour afficher la page de mise à jour des compétences de l'utilisateur
+"""
 @login_required
 def majskills_view(request):
     # On récupère l'utilisateur connecté
@@ -41,8 +43,11 @@ def majskills_view(request):
 
     # On récupère la liste des éléments UserSkill correspondant à l'utilisateur connecté
     skills_existing = UserSkill.objects.filter(user=user_connecte)
+
+    # On récupère la liste des ids des compétences de cet utilisateur (plus simple pour checker les bonnes cases à cocher)
     skills_existing_ids = skills_existing.values_list("skill_id", flat=True)
 
+    # Si on est en POST, on récupère le formulaire renseigné
     if request.method == "POST":
         # On va récupérer les compétences cochées dans le formulaire
         skill_chk = request.POST.getlist("skill_chk")
@@ -60,6 +65,7 @@ def majskills_view(request):
         # Redirection sur la page d'index
         return redirect("entraide:index")
 
+    # Si on arrive sur le formulaire, on va afficher le formulaire vide
     else:
         # On récupère la liste des compétences existantes pour les cases à cocher du formulaire
         skill_list = Skill.objects.order_by("name_skill")
@@ -95,6 +101,7 @@ def login_view(request):
     return render(request, "entraide/login.html", {
         "form": form
     })
+
 
 def logout_view(request):
     if request.method == "POST":
