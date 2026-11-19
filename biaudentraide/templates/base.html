@@ -27,18 +27,18 @@
             <nav>
                 {% block menu %}
                     {% if user.is_authenticated %}
-                        <a href="{% url 'entraide:majskills' %}">Définir mes compétences</a>
+                        <a href="{% url 'entraide:showschedules' %}">Mes créneaux </a>
 
-                        <a href="{% url 'entraide:addschedule' %}">Ajouter un créneau </a>
+                        <a href="{% url 'entraide:addschedule' %}">Nouveau créneau </a>
 
-                        <a href="{% url 'entraide:showschedules' %}">Voir mes créneaux </a>
+                        <a href="{% url 'entraide:majskills' %}">Mes compétences</a>
 
-                        <a href="{% url 'entraide:helpschedules' %}">Voir les prochains créneaux </a>
+                        <a href="{% url 'entraide:helpschedules' %}">Prochains créneaux </a>
 
                     {% else %}
-                        <a href="{% url 'entraide:allskills' %}">Liste des compétences proposées</a>
+                        <a href="{% url 'entraide:allskills' %}">Compétences proposées</a>
 
-                        <a href="{% url 'entraide:showschedules' %}">Voir les prochains créneaux réservés</a>
+                        <a href="{% url 'entraide:showschedules' %}">Prochains créneaux réservés</a>
 
                     {% endif %}
                 {% endblock %}
