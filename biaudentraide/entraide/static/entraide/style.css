@@ -39,6 +39,13 @@ select[aria-invalid="true"] {
     text-align: left;
 }
 
+.tableau-schedules tr.date-depassee{
+    background-color : white;
+    text-align: left;
+    text-decoration: line-through;
+}
+
+
 .tableau-schedules th,
 .tableau-schedules td{
     padding: 14px 18px;
