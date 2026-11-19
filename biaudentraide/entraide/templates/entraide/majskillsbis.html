@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %} Mise à jour des compétences {% endblock %}
+
+
+{% block main %}
+
+    <form action="{% url 'entraide:majskillsbis' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}<input type="submit" value="Valider"/>
+    </form>
+
+        {% if skills_existing %}
+
+            {% for skill in skills_existing %}
+                {{ skill.id }} - {{ skill.name_skill }}
+
+
+            {% endfor %}
+
+        {% else %}
+            <p>Aucune compétence n'a été renseignée.</p>
+        {% endif %}
+        <br/><br/>
+
+
+
+{% endblock %}

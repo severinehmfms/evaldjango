@@ -9,7 +9,7 @@ from django.utils import timezone
 
 from django.views import generic
 
-from entraide.forms import ScheduleForm
+from entraide.forms import ScheduleForm, UserSkillForm
 from entraide.models import Skill, UserSkill, Schedule
 
 
@@ -131,6 +131,41 @@ def majskills_view(request):
             'skills_existing': skills_existing,
             'skills_existing_ids': skills_existing_ids,
         })
+
+@login_required
+def majskillsbis_view(request):
+    """
+    Vue pour afficher la page de mise à jour des compétences de l'utilisateur
+    """
+
+    user_connecte = request.user
+
+    if request.method == "POST":
+        form = UserSkillForm(request.POST,user_connected=user_connecte)
+
+        if form.is_valid():
+            user_skill = form.save(commit=False)
+            user_skill.user = user_connecte
+            user_skill.save()
+
+            messages.success(request, "La compétence a bien été ajoutée.")
+            return redirect("entraide:majskillsbis")
+    else:
+        # On récupère la liste des compétences existantes
+        skill_list = Skill.objects.exclude().order_by("name_skill")
+
+        # On récupère la liste des objets Skill reliés à l'utilisateur
+        skills_existing = Skill.get_user_skills(user_connecte)
+
+        # On rajoute l'utilisateur connecté au formulaire pour pouvoir modifier la liste déroulante
+        form = UserSkillForm(user_connected=user_connecte)
+
+        return render(request, 'entraide/majskillsbis.html', {
+            'form': form,
+            'skill_list': skill_list,
+            'skills_existing': skills_existing
+        })
+
 
 
 @login_required
