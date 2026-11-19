@@ -12,6 +12,27 @@ def verif_date_future(value):
         raise ValidationError("Le créneau choisi doit être dans le futur.")
 
 
+class UserSkillForm(forms.ModelForm):
+    """ Formulaire pour l'ajout d'une compétence """
+    skill = forms.ModelChoiceField(queryset=Skill.objects.all(), label="Ajouter une compétence")
+    
+    class Meta:
+        model = UserSkill
+        fields = ['skill']
+
+    def __init__(self, *args, **kwargs):
+        # On rajoute cette fonction d'initialisation (pour notre formulaire)
+        # pour pouvoir envoyer des arguments au formulaire (dans mon cas : l'utilisateur connecté!)
+
+        # On récupère l'utilisateur passé depuis la vue
+        user_connected = kwargs.pop('user_connected')
+        super().__init__(*args, **kwargs)
+
+        if user_connected:
+            # On modifie le queryset du champ skill pour exclure les compétences de l'user de la liste déroulante
+            self.fields['skill'].queryset = Skill.objects.exclude(userskill__user=user_connected)
+
+
 class ScheduleForm(forms.Form):
     """Formulaire pour les créneaux d'activité"""
 
