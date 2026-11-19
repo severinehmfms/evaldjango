@@ -3,7 +3,7 @@ from selectors import SelectSelector
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.utils import timezone
 
@@ -78,6 +78,17 @@ def helpschedules_view(request):
 
     context = {"schedules_list": schedules_list}
     return render(request, "entraide/helpschedules.html", context)
+
+@login_required
+def help_view(request, schedule_id):
+    schedule = get_object_or_404(Schedule, pk=schedule_id)
+
+    schedule.user_helper = request.user
+    schedule.save()
+
+    messages.success(request, "L'aidant a bien été mis à jour pour ce créneau.")
+
+    return redirect("entraide:helpschedules")
 
 """
 Vue pour afficher la page de mise à jour des compétences de l'utilisateur
