@@ -166,6 +166,21 @@ def majskillsbis_view(request):
             'skills_existing': skills_existing
         })
 
+@login_required()
+def supskilluser_view(request, skill_id):
+    """ Vue appelée quand on choisit de supprimer une compétence d'un utilisateur"""
+    skill = get_object_or_404(Skill, pk=skill_id)
+
+    # On récupère l'objet UserSkill qui correspond à cet utilisateur et à cette compétence
+    user_skill = UserSkill.objects.filter(user=request.user).filter(skill=skill)
+
+    # S'il existe bien on le supprime
+    if (user_skill):
+        user_skill.delete()
+
+    messages.success(request, "La compétence a bien été supprimée.")
+
+    return redirect("entraide:majskillsbis")
 
 
 @login_required
