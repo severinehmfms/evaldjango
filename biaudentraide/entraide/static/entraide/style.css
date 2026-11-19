@@ -47,6 +47,6 @@ select[aria-invalid="true"] {
     color : grey;
 }
 
-.tableau-schedules button{
+button{
     border-radius: 8px;
 }
