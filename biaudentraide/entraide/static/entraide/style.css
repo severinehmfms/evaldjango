@@ -54,7 +54,7 @@ select[aria-invalid="true"] {
     color : grey;
 }
 
-button{
+button.bouton_arrondi{
     border-radius: 8px;
 }
 
