@@ -71,16 +71,13 @@ def helpschedules_view(request):
     skills_existing_ids = skills_existing.values_list("skill_id", flat=True)
 
     if (user_connecte.is_authenticated):
-        schedules_list = Schedule.objects.exclude(user_creator=user_connecte).filter(skill__in=skills_existing_ids).filter(date_help__gte=timezone.now()).order_by("-date_help")
+        schedules_list = Schedule.objects.exclude(user_creator=user_connecte).filter(skill__in=skills_existing_ids).filter(user_helper=None).filter(date_help__gte=timezone.now()).order_by("-date_help")
     else:
         # TODO Déclencher une exception
         messages.error(request, "Cette page n'est pas disponible pour les visiteurs.")
 
     context = {"schedules_list": schedules_list}
     return render(request, "entraide/helpschedules.html", context)
-
-
-
 
 """
 Vue pour afficher la page de mise à jour des compétences de l'utilisateur
