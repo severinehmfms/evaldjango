@@ -12,14 +12,17 @@ from django.views import generic
 from entraide.forms import ScheduleForm
 from entraide.models import Skill, UserSkill, Schedule
 
+
 def index(request):
     """
-    Vue qui permet d'afficher, soit la liste de ses schedules, pour un utilisateur connecté, soit la liste des prochains schedules validés, pour un visiteur
+    Vue qui permet d'afficher,
+     - les schedules qu'il a créé, pour un utilisateur connecté
+     - les prochains schedules validés, pour un visiteur
     """
     user_connecte = request.user
 
-    # Si l'utilisateur est connecté on va récupérer la liste des créneaux qu'il a créé que ce soit passé ou futur .filter(date_help__gte=timezone.now())
-    if (user_connecte.is_authenticated):
+    # Si l'utilisateur est connecté on va récupérer la liste des créneaux qu'il a créé que ce soit passé ou futur
+    if user_connecte.is_authenticated:
         schedules_list = Schedule.objects.filter(user_creator=user_connecte).order_by("-date_help")
 
     # Si c'est un visiteur, on va récupérer tous les prochains créneaux où un utilisateur a proposé ses services
@@ -31,6 +34,7 @@ def index(request):
     context = {"schedules_list": schedules_list}
     return render(request, "entraide/index.html", context)
 
+
 # Vue générique pour la page d'affichage des compétences
 class SkillsView(generic.ListView):
     template_name = "entraide/allskills.html"
@@ -39,10 +43,11 @@ class SkillsView(generic.ListView):
     def get_queryset(self):
         return Skill.objects.order_by("name_skill")
 
+
 @login_required
 def helpschedules_view(request):
     """
-    Vue qui permet d'afficher, pour un utilisateur connecté, la liste des schedules créés par les autres, dans le futur,
+    Vue qui permet d'afficher pour un utilisateur, la liste des schedules créés par les autres, dans le futur,
     pour lesquels l'utilisateur connecté possède la compétence requise, et auxquels personne n'a encore répondu
     """
 
@@ -51,22 +56,28 @@ def helpschedules_view(request):
     # On récupère la liste des éléments UserSkill correspondant à l'utilisateur connecté
     skills_existing = UserSkill.objects.filter(user=user_connecte)
 
-    # On récupère la liste des ids des compétences de cet utilisateur (plus simple pour checker les bonnes cases à cocher)
+    # On récupère la liste des ids des compétences de cet utilisateur (pour checker les bonnes cases à cocher)
     skills_existing_ids = skills_existing.values_list("skill_id", flat=True)
 
     schedules_list = []
 
-    if (user_connecte.is_authenticated):
-        schedules_list = Schedule.objects.exclude(user_creator=user_connecte).filter(skill__in=skills_existing_ids).filter(user_helper=None).filter(date_help__gte=timezone.now()).order_by("-date_help")
+    if user_connecte.is_authenticated:
+        schedules_list = (Schedule.objects.exclude(user_creator=user_connecte).filter(skill__in=skills_existing_ids)
+                          .filter(user_helper=None)
+                          .filter(date_help__gte=timezone.now())
+                          .order_by("-date_help"))
 
-    if (len(skills_existing_ids)==0):
-        messages.error(request, "Merci de bien vouloir renseigner vos compétences pour pouvoir afficher les créneaux correspondants.")
+    if len(skills_existing_ids) == 0:
+        messages.error(request,
+                       "Merci de renseigner vos compétences pour pouvoir afficher les créneaux correspondants.")
 
     context = {"schedules_list": schedules_list}
     return render(request, "entraide/helpschedules.html", context)
 
+
 @login_required
 def help_view(request, schedule_id):
+    """ Vue qui permet de renseigner l'utilisateur qui accepte d'aider"""
     schedule = get_object_or_404(Schedule, pk=schedule_id)
 
     schedule.user_helper = request.user
@@ -76,18 +87,19 @@ def help_view(request, schedule_id):
 
     return redirect("entraide:helpschedules")
 
-"""
-Vue pour afficher la page de mise à jour des compétences de l'utilisateur
-"""
+
 @login_required
 def majskills_view(request):
-    # On récupère l'utilisateur connecté
+    """
+    Vue pour afficher la page de mise à jour des compétences de l'utilisateur
+    """
+
     user_connecte = request.user
 
     # On récupère la liste des éléments UserSkill correspondant à l'utilisateur connecté
     skills_existing = UserSkill.objects.filter(user=user_connecte)
 
-    # On récupère la liste des ids des compétences de cet utilisateur (plus simple pour checker les bonnes cases à cocher)
+    # On récupère la liste des ids des compétences de cet utilisateur (pour checker les bonnes cases à cocher)
     skills_existing_ids = skills_existing.values_list("skill_id", flat=True)
 
     # Si on est en POST, on récupère le formulaire renseigné
@@ -121,15 +133,15 @@ def majskills_view(request):
         })
 
 
-"""
-Vue pour permettre à l'utilisateur de créer un créneau pour une activité 
-"""
 @login_required
 def addschedule_view(request):
+    """
+    Vue pour permettre à l'utilisateur de créer un créneau pour une activité
+    """
 
     if request.method == "POST":
 
-        form = ScheduleForm(request.POST,user_connected=request.user)
+        form = ScheduleForm(request.POST, user_connected=request.user)
 
         if form.is_valid():
 
@@ -151,9 +163,6 @@ def addschedule_view(request):
             )
 
             messages.success(request, "Le créneau a bien été ajouté.")
-            # Sans le raccourci
-            # return HttpResponseRedirect(reverse("polls:index"))
-            # En utilisant le raccourci de from django.shortcuts import redirect
             return redirect("entraide:index")
     else:
         form = ScheduleForm(user_connected=request.user)
@@ -166,6 +175,7 @@ def addschedule_view(request):
 
 
 def login_view(request):
+    """ Vue pour la connexion """
     if request.method == "POST":
         form = AuthenticationForm(request, data=request.POST)
 
@@ -179,7 +189,7 @@ def login_view(request):
             if next_url:
                 return redirect(next_url)
 
-            return redirect("entraide:majskills")
+            return redirect("entraide:index")
 
     else:
         form = AuthenticationForm()
@@ -190,6 +200,7 @@ def login_view(request):
 
 
 def logout_view(request):
+    """ Vue pour la déconnexion"""
     if request.method == "POST":
         logout(request)
 
