@@ -24,3 +24,29 @@ textarea[aria-invalid="true"],
 select[aria-invalid="true"] {
     border: 2px solid red;
 }
+
+.tableau-schedules{
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.tableau-schedules tr{
+    background-color : lightgray;
+    color : #666666;
+    text-align: left;
+}
+
+.tableau-schedules th,
+.tableau-schedules td{
+    padding: 14px 18px;
+}
+.tableau-schedules a{
+    color : grey;
+}
+
+.tableau-schedules button{
+    border-radius: 8px;
+}
