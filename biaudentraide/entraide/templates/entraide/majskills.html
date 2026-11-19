@@ -7,20 +7,21 @@
 
 {% block main %}
 
+    <h3> Mes compétences </h3>
+
     <form action="{% url 'entraide:majskills' %}" method="post">
         {% csrf_token %}
 
         {% if skill_list %}
-            <label for="skill_chk">Compétences :</label><br/>
             {% for skillch in skill_list %}
-                {{ skillch.id }} - {{ skillch.name_skill }}
-                <input type="checkbox" name="skill_chk" value="{{ skillch.id }}" {% if skillch.id in skills_existing_ids %} checked  {% endif %}><br/>
+                <!-- {{ skillch.id }} - --> {{ skillch.name_skill }}
+                <input type="checkbox" name="skill_chk" value="{{ skillch.id }}" {% if skillch.id in skills_existing_ids %} checked  {% endif %}><br/><br/>
             {% endfor %}
 
         {% else %}
             <p>Aucune compétence n'a été renseignée, merci de contacter l'administrateur du site.</p>
         {% endif %}
-        <br/><br/>
+        <br/>
         <input type="submit" value="Valider"/>
     </form>
 
