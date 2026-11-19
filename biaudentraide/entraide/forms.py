@@ -26,11 +26,12 @@ class ScheduleForm(forms.Form):
     date_help = forms.DateTimeField(
         label="Choisir la date prévue pour l'activité",
         required=True,
-        input_formats=["%Y-%m-%dT%H:%M"],
-        widget=forms.DateTimeInput(
-            format="%Y-%m-%dT%H:%M",
-            attrs={"type": "datetime-local"}
+        input_formats=["%Y-%m-%d"],
+        widget=forms.DateInput(
+            format="%Y-%m-%d",
+            attrs={"type": "date"}
         ),
+
         validators=[
             verif_date_future
         ],
