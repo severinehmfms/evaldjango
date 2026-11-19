@@ -19,9 +19,10 @@
                     <th> Date </th>
                     <th> Activité </th>
                     <th> Compétence requise </th>
-                    {% if user.is_authenticated %}
-                        <th> Utilisateur aidant </th>
+                    {% if not user.is_authenticated %}
+                        <th> Utilisateur demandeur </th>
                     {% endif %}
+                    <th> Utilisateur aidant </th>
                 </tr>
                 {% for schedule in schedules_list %}
                      <tr>
@@ -32,7 +33,15 @@
                                 {% if schedule.user_helper is not None  %}
                                     <td> {{ schedule.user_helper.first_name }} {{ schedule.user_helper.last_name }} {{ schedule.user_helper.email }} </td>
                                 {% else %}
-                         <td> <img src="{% static 'entraide/images/aucun.webp' %}" alt="Aucun utilisateur n'a proposé son aide pour le moment" height="20">Aucun utilisateur n'a proposé son aide pour le moment</td>
+                                    <td> <img src="{% static 'entraide/images/aucun.webp' %}" alt="Aucun utilisateur n'a proposé son aide pour le moment" height="20">Aucun utilisateur n'a proposé son aide pour le moment</td>
+                                {% endif %}
+                        {% else %}
+                                {% if schedule.user_creator is not None  %}
+                                    <td> {{ schedule.user_creator.first_name|slice:":1" }}. {{ schedule.user_creator.last_name|slice:":1" }}.  </td>
+                                {% endif %}
+
+                                {% if schedule.user_helper is not None  %}
+                                    <td> {{ schedule.user_helper.first_name|slice:":1" }}. {{ schedule.user_helper.last_name|slice:":1" }}.  </td>
                                 {% endif %}
                         {% endif %}
                      </tr>
