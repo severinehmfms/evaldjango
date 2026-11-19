@@ -7,7 +7,7 @@
 
 {% block main %}
 
-    <form action="{% url 'entraide:majskillsbis' %}" method="post">{% csrf_token %}<label> Ajouter une compétence </label>{{form.skill}}<input type="submit" value="Valider" class="bouton-img"/></form>
+    <form action="{% url 'entraide:majskillsbis' %}" method="post">{% csrf_token %}<span> Ajouter une compétence </span>{{form.skill}}<input type="submit" value="Valider" class="bouton-img"/></form>
     <br/>
 
     {% if skills_existing %}
