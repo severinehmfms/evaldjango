@@ -8,10 +8,11 @@
 
     {% if schedules_list %}
         <div>
-            {% if not user.is_authenticated %}
-            <h3> Prochains créneaux où un utilisateur a proposé d’apporter son aide à un autre utilisateur </h3>
+            {% if user.is_authenticated %}
+                <h3> Mes créneaux </h3>
+            {% else %}
+                <h3> Prochains créneaux où un utilisateur a proposé d’apporter son aide à un autre utilisateur </h3>
             {% endif %}
-
 
             <table class="tableau-schedules">
                 <tr>
