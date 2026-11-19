@@ -12,10 +12,19 @@ from django.views import generic
 from entraide.forms import ScheduleForm
 from entraide.models import Skill, UserSkill, Schedule
 
-# TODO Voir la page d'accueil !
+# TODO Voir ce que je veux mettre pour la page d'accueil !
 def index(request):
-    context = {"test": "test"}
-    return render(request, "entraide/index.html", context)
+    user_connecte = request.user
+
+    # Si l'utilisateur est connecté on le renvoie sur la liste de ses schedules
+    if (user_connecte.is_authenticated):
+        return redirect("entraide:showschedules")
+    # Sinon sur la liste de toutes les compétences
+    else:
+        return redirect("entraide:allskills")
+
+    #context = {"test": "test"}
+    #return render(request, "entraide/index.html", context)
 
 
 # Vue générique pour la page d'affichage des compétences
@@ -28,20 +37,49 @@ class SkillsView(generic.ListView):
 
 
 def showschedules_view(request):
+    """
+    Vue qui permet d'afficher, soit la liste de ses schedules, pour un utilisateur connecté, soit la liste des prochains schedules validés, pour un visiteur
+    """
     # schedules_list = Schedule.objects.all().order_by("-date_help")
 
     user_connecte = request.user
 
-    # Si l'utilisateur est connecté on va récupérer la liste des créneaux qu'il a créé
+    # Si l'utilisateur est connecté on va récupérer la liste des créneaux qu'il a créé que ce soit passé ou futur .filter(date_help__gte=timezone.now())
     if (user_connecte.is_authenticated):
-        schedules_list = Schedule.objects.filter(user_creator=user_connecte).filter(date_help__gte=timezone.now()).order_by("-date_help")
+        schedules_list = Schedule.objects.filter(user_creator=user_connecte).order_by("-date_help")
 
-    # Si c'est un visiteur, on va récupérer tous les prochains créneaux (on anomysera les personnes dans le template)
+    # Si c'est un visiteur, on va récupérer tous les prochains créneaux TODO afficher que les créneaux qui ont été Validés (donc dont on a renseigné le user_helper) (on anomysera les personnes dans le template)
     else:
         schedules_list = Schedule.objects.filter(date_help__gte=timezone.now()).order_by("-date_help")
 
     context = {"schedules_list": schedules_list}
     return render(request, "entraide/showschedules.html", context)
+
+@login_required
+def helpschedules_view(request):
+    """
+    Vue qui permet d'afficher, pour un utilisateur connecté, la liste des schedules créés par les autres, dans le futur,
+    pour lesquels l'utilisateur connecté possède la compétence requise, et auxquels personne n'a encore répondu
+    """
+
+    user_connecte = request.user
+
+    # On récupère la liste des éléments UserSkill correspondant à l'utilisateur connecté
+    skills_existing = UserSkill.objects.filter(user=user_connecte)
+
+    # On récupère la liste des ids des compétences de cet utilisateur (plus simple pour checker les bonnes cases à cocher)
+    skills_existing_ids = skills_existing.values_list("skill_id", flat=True)
+
+    if (user_connecte.is_authenticated):
+        schedules_list = Schedule.objects.exclude(user_creator=user_connecte).filter(skill__in=skills_existing_ids).filter(date_help__gte=timezone.now()).order_by("-date_help")
+    else:
+        # TODO Déclencher une exception
+        messages.error(request, "Cette page n'est pas disponible pour les visiteurs.")
+
+    context = {"schedules_list": schedules_list}
+    return render(request, "entraide/helpschedules.html", context)
+
+
 
 
 """
