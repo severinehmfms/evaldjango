@@ -7,12 +7,12 @@
 {% block main %}
 
     {% if skill_list %}
-        <ul>
+        <div>
+            <h3> Liste des compétences proposées </h3>
         {% for skill in skill_list %}
-            <li>{{ skill.name_skill }}
-            </li>
+            <span>{{ skill.name_skill }}</span><br/><br/>
         {% endfor %}
-        </ul>
+        </div>
     {% else %}
         <p>Aucune compétence n'a été renseignée, merci de contacter l'administrateur du site.</p>
     {% endif %}
