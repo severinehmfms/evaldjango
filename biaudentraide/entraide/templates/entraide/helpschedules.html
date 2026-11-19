@@ -18,7 +18,7 @@
                 </tr>
                 {% for schedule in schedules_list %}
                         <tr>
-                            <td>{{ schedule.date_help }}</td>
+                            <td>{{ schedule.date_help|date:"d/m/Y"}}</td>
                             <td>
                                 <a href="mailto:{{ schedule.user_creator.email }}">{{ schedule.user_creator.first_name}} {{ schedule.user_creator.last_name}}</a>
                             </td>
