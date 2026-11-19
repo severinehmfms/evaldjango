@@ -12,6 +12,11 @@ class Skill(models.Model):
     def __str__(self):
         return self.name_skill
 
+    @classmethod
+    def get_user_skills(cls, user):
+        """Méthode qui va retourner toutes les Skills d'un utilisateur"""
+        return Skill.objects.filter(userskill__user=user)
+
 
 class UserSkill(models.Model):
     """
@@ -19,6 +24,9 @@ class UserSkill(models.Model):
     """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     skill = models.ForeignKey(Skill, on_delete=models.CASCADE)
+
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=['user', 'skill'], name='unique_user_skill')]
 
 
 class Schedule(models.Model):
