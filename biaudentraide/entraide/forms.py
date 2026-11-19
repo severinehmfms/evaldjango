@@ -9,7 +9,7 @@ from entraide.models import Skill, UserSkill
 def verif_date_future(value):
     """Fonction pour le Validator qui vérifie que la date choisie est bein dans le futur"""
     if value < timezone.now():
-        raise ValidationError("Le créneau doit être dans le futur.")
+        raise ValidationError("Le créneau choisi doit être dans le futur.")
 
 
 class ScheduleForm(forms.Form):
