@@ -57,3 +57,10 @@ select[aria-invalid="true"] {
 button{
     border-radius: 8px;
 }
+
+button.bouton-img {
+    white-space: nowrap;
+    border:none;
+    background:none;
+    cursor:pointer;
+}

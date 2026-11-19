@@ -7,15 +7,15 @@
 
 {% block main %}
 
-    <form action="{% url 'entraide:majskillsbis' %}" method="post">{% csrf_token %}{{ form.as_p }}<input type="submit" value="Valider" class="bouton-img"/></form>
+    <form action="{% url 'entraide:majskillsbis' %}" method="post">{% csrf_token %}<label> Ajouter une compétence </label>{{form.skill}}<input type="submit" value="Valider" class="bouton-img"/></form>
     <br/>
 
     {% if skills_existing %}
         {% for skill in skills_existing %}
-            {{ skill.id }} - {{ skill.name_skill }}
-
             <form action="{% url 'entraide:supskilluser' skill.id %}" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer cette compétence ?');">
-            {% csrf_token %}<button type="submit" class="bouton-img">Supprimer</button></form>
+                {{ skill.id }} - {{ skill.name_skill }}
+                {% csrf_token %}<button type="submit" class="bouton-img"><img src="{% static '/entraide/images/sup.webp' %}" alt="Supprimer cette compétence" height="20"></button>
+            </form>
             <br/>
         {% endfor %}
     {% else %}
