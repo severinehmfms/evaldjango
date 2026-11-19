@@ -27,8 +27,7 @@ def index(request):
 
     # Si c'est un visiteur, on va récupérer tous les prochains créneaux où un utilisateur a proposé ses services
     else:
-        schedules_list = (Schedule.objects  .filter(user_helper__isnull=False)
-                                            .filter(date_help__gte=timezone.now())
+        schedules_list = (Schedule.objects  .filter(user_helper__isnull=False, date_help__gte=timezone.now())
                                             .order_by("-date_help"))
 
     context = {"schedules_list": schedules_list}
@@ -63,8 +62,7 @@ def helpschedules_view(request):
 
     if user_connecte.is_authenticated:
         schedules_list = (Schedule.objects.exclude(user_creator=user_connecte).filter(skill__in=skills_existing_ids)
-                          .filter(user_helper=None)
-                          .filter(date_help__gte=timezone.now())
+                          .filter(user_helper=None, date_help__gte=timezone.now())
                           .order_by("-date_help"))
 
     if len(skills_existing_ids) == 0:
@@ -174,7 +172,7 @@ def supskilluser_view(request, skill_id):
     skill = get_object_or_404(Skill, pk=skill_id)
 
     # On récupère l'objet UserSkill qui correspond à cet utilisateur et à cette compétence
-    user_skill = UserSkill.objects.filter(user=request.user).filter(skill=skill)
+    user_skill = UserSkill.objects.filter(user=request.user, skill=skill)
 
     # S'il existe bien on le supprime
     if user_skill:
