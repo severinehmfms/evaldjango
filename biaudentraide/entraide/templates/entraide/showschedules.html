@@ -15,7 +15,6 @@
             - Date prévue : {{ schedule.date_help }}
             </div>
             {% if user.is_authenticated %}
-                <p> Créateur : {{ schedule.user_creator.first_name }} {{ schedule.user_creator.last_name }} {{ schedule.user_creator.email }} </p>
                 <p> Utilisateur aidant :
                     {% if schedule.user_helper is not None  %}
                         {{ schedule.user_helper.first_name }} {{ schedule.user_helper.last_name }} {{ schedule.user_helper.email }} </p>
