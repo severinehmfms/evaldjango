@@ -12,36 +12,10 @@ from django.views import generic
 from entraide.forms import ScheduleForm
 from entraide.models import Skill, UserSkill, Schedule
 
-# TODO Voir ce que je veux mettre pour la page d'accueil !
 def index(request):
-    user_connecte = request.user
-
-    # Si l'utilisateur est connecté on le renvoie sur la liste de ses schedules
-    if (user_connecte.is_authenticated):
-        return redirect("entraide:showschedules")
-    # Sinon sur la liste de toutes les compétences
-    else:
-        return redirect("entraide:allskills")
-
-    #context = {"test": "test"}
-    #return render(request, "entraide/index.html", context)
-
-
-# Vue générique pour la page d'affichage des compétences
-class SkillsView(generic.ListView):
-    template_name = "entraide/allskills.html"
-    context_object_name = "skill_list"
-
-    def get_queryset(self):
-        return Skill.objects.order_by("name_skill")
-
-
-def showschedules_view(request):
     """
     Vue qui permet d'afficher, soit la liste de ses schedules, pour un utilisateur connecté, soit la liste des prochains schedules validés, pour un visiteur
     """
-    # schedules_list = Schedule.objects.all().order_by("-date_help")
-
     user_connecte = request.user
 
     # Si l'utilisateur est connecté on va récupérer la liste des créneaux qu'il a créé que ce soit passé ou futur .filter(date_help__gte=timezone.now())
@@ -50,10 +24,20 @@ def showschedules_view(request):
 
     # Si c'est un visiteur, on va récupérer tous les prochains créneaux où un utilisateur a proposé ses services
     else:
-        schedules_list = Schedule.objects.filter(user_helper__isnull=False).filter(date_help__gte=timezone.now()).order_by("-date_help")
+        schedules_list = (Schedule.objects  .filter(user_helper__isnull=False)
+                                            .filter(date_help__gte=timezone.now())
+                                            .order_by("-date_help"))
 
     context = {"schedules_list": schedules_list}
-    return render(request, "entraide/showschedules.html", context)
+    return render(request, "entraide/index.html", context)
+
+# Vue générique pour la page d'affichage des compétences
+class SkillsView(generic.ListView):
+    template_name = "entraide/allskills.html"
+    context_object_name = "skill_list"
+
+    def get_queryset(self):
+        return Skill.objects.order_by("name_skill")
 
 @login_required
 def helpschedules_view(request):
