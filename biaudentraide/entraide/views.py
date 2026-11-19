@@ -54,11 +54,13 @@ def helpschedules_view(request):
     # On récupère la liste des ids des compétences de cet utilisateur (plus simple pour checker les bonnes cases à cocher)
     skills_existing_ids = skills_existing.values_list("skill_id", flat=True)
 
+    schedules_list = []
+
     if (user_connecte.is_authenticated):
         schedules_list = Schedule.objects.exclude(user_creator=user_connecte).filter(skill__in=skills_existing_ids).filter(user_helper=None).filter(date_help__gte=timezone.now()).order_by("-date_help")
-    else:
-        # TODO Déclencher une exception
-        messages.error(request, "Cette page n'est pas disponible pour les visiteurs.")
+
+    if (len(skills_existing_ids)==0):
+        messages.error(request, "Merci de bien vouloir renseigner vos compétences pour pouvoir afficher les créneaux correspondants.")
 
     context = {"schedules_list": schedules_list}
     return render(request, "entraide/helpschedules.html", context)
