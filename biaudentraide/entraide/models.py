@@ -49,4 +49,9 @@ class Schedule(models.Model):
 
     def __str__(self):
         date_locale = timezone.localtime(self.date_help)
-        return self.name_activity+ " - " + date_locale.strftime("%d/%m/%Y à %Hh%M")
+        return self.name_activity+ " - " + date_locale.strftime("%d/%m/%Y")
+
+    @property
+    def is_expired(self):
+        now = timezone.now()
+        return now > self.date_help
