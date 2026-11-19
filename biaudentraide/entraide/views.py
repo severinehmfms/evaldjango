@@ -115,8 +115,8 @@ def majskills_view(request):
         # On retourne sur la page index.html,en rajoutant un message de confirmation
         messages.success(request, "Les compétences ont bien été mises à jour.")
 
-        # Redirection sur la page d'index
-        return redirect("entraide:index")
+        # Redirection sur la page de mise à jour
+        return redirect("entraide:majskills")
 
     # Si on arrive sur le formulaire, on va afficher le formulaire vide
     else:
