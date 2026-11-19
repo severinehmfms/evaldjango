@@ -43,7 +43,7 @@
                                 {% if schedule.user_helper is not None  %}
                                     <td> <a href="mailto:{{ schedule.user_helper.email }}">{{ schedule.user_helper.first_name}} {{ schedule.user_helper.last_name}}</a> </td>
                                 {% else %}
-                                    <td> <img src="{% static 'entraide/images/aucun.webp' %}" alt="Aucun utilisateur n'a proposé son aide pour le moment" height="20">Aucun utilisateur n'a proposé son aide pour le moment</td>
+                                    <td> <img src="{% static '/entraide/images/aucun.webp' %}" alt="Aucun utilisateur n'a proposé son aide pour le moment" height="20">Aucun utilisateur n'a proposé son aide pour le moment</td>
                                 {% endif %}
                         {% else %}
                                 {% if schedule.user_creator is not None  %}
