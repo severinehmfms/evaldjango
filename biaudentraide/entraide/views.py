@@ -132,6 +132,7 @@ def majskills_view(request):
             'skills_existing_ids': skills_existing_ids,
         })
 
+
 @login_required
 def majskillsbis_view(request):
     """
@@ -141,7 +142,7 @@ def majskillsbis_view(request):
     user_connecte = request.user
 
     if request.method == "POST":
-        form = UserSkillForm(request.POST,user_connected=user_connecte)
+        form = UserSkillForm(request.POST, user_connected=user_connecte)
 
         if form.is_valid():
             user_skill = form.save(commit=False)
@@ -160,11 +161,12 @@ def majskillsbis_view(request):
         # On rajoute l'utilisateur connecté au formulaire pour pouvoir modifier la liste déroulante
         form = UserSkillForm(user_connected=user_connecte)
 
-        return render(request, 'entraide/majskillsbis.html', {
+    return render(request, 'entraide/majskillsbis.html', {
             'form': form,
             'skill_list': skill_list,
             'skills_existing': skills_existing
-        })
+    })
+
 
 @login_required()
 def supskilluser_view(request, skill_id):
@@ -175,7 +177,7 @@ def supskilluser_view(request, skill_id):
     user_skill = UserSkill.objects.filter(user=request.user).filter(skill=skill)
 
     # S'il existe bien on le supprime
-    if (user_skill):
+    if user_skill:
         user_skill.delete()
 
     messages.success(request, "La compétence a bien été supprimée.")
