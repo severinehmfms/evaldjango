@@ -7,13 +7,14 @@ from entraide.models import Skill, UserSkill
 
 
 def verif_date_future(value):
-    """Fonction pour le Validator qui vérifie que la date choisie est bein dans le futur"""
+    """Fonction pour le Validator qui vérifie que la date choisie est bien dans le futur"""
     if value < timezone.now():
         raise ValidationError("Le créneau choisi doit être dans le futur.")
 
 
 class UserSkillForm(forms.ModelForm):
     """ Formulaire pour l'ajout d'une compétence """
+
     skill = forms.ModelChoiceField(queryset=Skill.objects.all(), label="Ajouter une compétence")
     
     class Meta:
