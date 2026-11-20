@@ -1,5 +1,3 @@
-from selectors import SelectSelector
-
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
@@ -138,6 +136,8 @@ def majskillsbis_view(request):
     """
 
     user_connecte = request.user
+
+    skills_existing = []
 
     if request.method == "POST":
         form = UserSkillForm(request.POST, user_connected=user_connecte)
