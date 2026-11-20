@@ -32,7 +32,7 @@
                     {% endif %}
 
                     {% if schedule.is_expired %}
-                        <td>Date dépassée.</td>
+                        <td>Date dépassée : {{ schedule.date_help|date:"d/m/Y"}}</td>
                     {% else %}
                         <td>{{ schedule.date_help|date:"d/m/Y"}}</td>
                     {% endif %}
