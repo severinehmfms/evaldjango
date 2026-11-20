@@ -23,12 +23,12 @@ def index(request):
 
     # Si l'utilisateur est connecté on va récupérer la liste des créneaux qu'il a créé que ce soit passé ou futur
     if user_connecte.is_authenticated:
-        schedules_list = Schedule.objects.filter(user_creator=user_connecte).order_by("-date_help")
+        schedules_list = Schedule.objects.filter(user_creator=user_connecte).order_by("date_help")
 
     # Si c'est un visiteur, on va récupérer tous les prochains créneaux où un utilisateur a proposé ses services
     else:
         schedules_list = (Schedule.objects  .filter(user_helper__isnull=False, date_help__gte=timezone.now())
-                                            .order_by("-date_help"))
+                                            .order_by("date_help"))
 
     context = {"schedules_list": schedules_list}
     return render(request, "entraide/index.html", context)
@@ -63,7 +63,7 @@ def helpschedules_view(request):
     if user_connecte.is_authenticated:
         schedules_list = (Schedule.objects.exclude(user_creator=user_connecte).filter(skill__in=skills_existing_ids)
                           .filter(user_helper=None, date_help__gte=timezone.now())
-                          .order_by("-date_help"))
+                          .order_by("date_help"))
 
     if len(skills_existing_ids) == 0:
         messages.error(request,
