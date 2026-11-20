@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %} Liste des créneaux réservés {% endblock %}
+
+{% block main %}
+    <h3>Mes actions : créneaux ou j'ai proposé mon aide</h3>
+
+    {% if schedules_list %}
+        <div>
+            <table class="tableau-schedules">
+                <tr>
+                    <th> Date </th>
+                    <th> Utilisateur </th>
+                    <th> Activité </th>
+                    <th> Compétence requise </th>
+                </tr>
+                {% for schedule in schedules_list %}
+                        <tr>
+                            <td>{{ schedule.date_help|date:"d/m/Y"}}</td>
+                            <td>
+                                <a href="mailto:{{ schedule.user_creator.email }}">{{ schedule.user_creator.first_name}} {{ schedule.user_creator.last_name}}</a>
+                            </td>
+
+                            <td>{{ schedule.name_activity }}</td>
+
+                            <td>{{ schedule.skill.name_skill }}</td>
+                        </tr>
+                {% endfor %}
+            </table>
+        </div>
+    {% else %}
+        <p>Aucun créneau n'est renseigné pour l'instant.</p>
+    {% endif %}
+
+{% endblock %}

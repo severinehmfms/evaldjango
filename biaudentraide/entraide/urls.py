@@ -25,4 +25,6 @@ urlpatterns = [
     path("login/", views.login_view, name="login"),
     # Vue pour se déconnecter
     path("logout/", views.logout_view, name="logout"),
+    # Vue supplémentaire pour afficher les créneaux ou on a choisi d'aider une personne
+    path("myhelpschedules/", views.myhelpschedules_view, name="myhelpschedules"),
 ]

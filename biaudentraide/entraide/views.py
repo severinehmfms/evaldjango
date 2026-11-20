@@ -70,6 +70,20 @@ def helpschedules_view(request):
     context = {"schedules_list": schedules_list}
     return render(request, "entraide/helpschedules.html", context)
 
+@login_required
+def myhelpschedules_view(request):
+    """
+    Vue qui permet d'afficher pour un utilisateur, la liste des schedules ou il va aider
+    """
+
+    user_connecte = request.user
+
+    schedules_list = (Schedule.objects.filter(user_helper=user_connecte)
+                          .filter(date_help__gte=timezone.now())
+                          .order_by("date_help"))
+
+    context = {"schedules_list": schedules_list}
+    return render(request, "entraide/myhelpschedules.html", context)
 
 @login_required
 def help_view(request, schedule_id):
