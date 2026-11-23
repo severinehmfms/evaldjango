@@ -1,5 +1,5 @@
 
-#Titre : Evaluation Django
+#Titre : Evaluation Web Python - Framework Django
 
 #Sujet : Echange de compétences
 
@@ -12,9 +12,9 @@ Ce prototype est une application Web, qui n’intégrera pas – dans cette prem
 ###Installation : 
 - Cloner le répertoire git
 - Créer un environnement virtuel pour ce projet, et l'activer
-- Se placer dans le répertoire biaudentraide 
+- Se placer dans le répertoire **biaudentraide** 
 - Réinstaller les dépendances en lançant cette commande de votre terminal :
-	python -m pip install -r requirements.txt
+	*python -m pip install -r requirements.txt*
 - Effectuer les migrations de la base de données du projet 
-	python manage.py migrate
+	*python manage.py migrate*
 	
