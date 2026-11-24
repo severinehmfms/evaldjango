@@ -5,62 +5,97 @@
 
     <meta charset="UTF-8">
     <title>{% block title %}Biaud'Entraide{% endblock %}</title>
+
+
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <link rel="stylesheet" href="{% static 'entraide/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
 <header>
         {% block header %}
-            <div class="header-top">
-                <img src="{% static 'images/banner-header.jpg' %}" alt="Bannière du site" height="150">
-                <div class="user-info">
-                    {% if user.is_authenticated %}
-                        <!-- plus sécurisé avec post mais possible aussi de mettre un lien déconnexion-->
-                        <p> {{ user.first_name }} {{ user.last_name }}<form method="post" action="{% url 'entraide:logout' %}">{% csrf_token %}<button type="submit">Déconnexion</button></form></p>
-                    {% else %}
-                        <a href="{% url 'entraide:login' %}">Connexion</a>
-                    {% endif %}
+            <div class="container my-4" > <!-- class="header-top"  -->
+                <div class="position-relative">
+                    <img src="{% static 'images/banner-header.png' %}" alt="Bannière du site" height="150" class="img-fluid w-100 rounded-3">
+
+                    <div class="user-info">
+                        {% if user.is_authenticated %}
+                            <!-- plus sécurisé avec post mais possible aussi de mettre un lien déconnexion-->
+                            <p> {{ user.first_name }} {{ user.last_name }}<form method="post" action="{% url 'entraide:logout' %}">
+                            {% csrf_token %}<button type="submit" class="btn btn-outline-success btn-sm">Déconnexion</button></form></p>
+                        {% else %}
+                            <a href="{% url 'entraide:login' %}" class="btn btn-success btn-sm">Connexion</a>
+                        {% endif %}
+                    </div>
                 </div>
-            </div>
 
-            <nav>
-                {% block menu %}
-                    {% if user.is_authenticated %}
-                        <a href="{% url 'entraide:index' %}">Page d'accueil : Mes créneaux </a>
+                <div class="col-md-12">
+                    <nav class="navbar navbar-expand-lg navigation">
+                       <div class="container">
+                            <div class="navbar-nav">
+                                {% block menu %}
+                                    {% if user.is_authenticated %}
+                                        <a class="nav-link {% if request.resolver_match.url_name == 'index' %}active{% endif %}"
+                                           href="{% url 'entraide:index' %}">
+                                            Page d'accueil : Mes créneaux
+                                        </a>
+                                        <a class="nav-link {% if request.resolver_match.url_name == 'myhelpschedules' %}active{% endif %}"
+                                           href="{% url 'entraide:myhelpschedules' %}">Mes actions </a>
 
-                        <a href="{% url 'entraide:myhelpschedules' %}">Mes actions </a>
+                                        <a class="nav-link {% if request.resolver_match.url_name == 'addschedule' %}active{% endif %}"
+                                           href="{% url 'entraide:addschedule' %}">Nouveau créneau </a>
 
-                        <a href="{% url 'entraide:addschedule' %}">Nouveau créneau </a>
+                                        <a class="nav-link {% if request.resolver_match.url_name == 'majskills' %}active{% endif %}"
+                                           href="{% url 'entraide:majskills' %}">Mes compétences</a>
 
-                        <a href="{% url 'entraide:majskills' %}">Mes compétences</a>
+                                        <a class="nav-link {% if request.resolver_match.url_name == 'majskillsbis' %}active{% endif %}"
+                                           href="{% url 'entraide:majskillsbis' %}">Mes compétences Nouveau formulaire</a>
 
-                        <a href="{% url 'entraide:majskillsbis' %}">Mes compétences Nouveau formulaire</a>
+                                        <a class="nav-link {% if request.resolver_match.url_name == 'helpschedules' %}active{% endif %}"
+                                           href="{% url 'entraide:helpschedules' %}">Prochains créneaux </a>
 
-                        <a href="{% url 'entraide:helpschedules' %}">Prochains créneaux </a>
+                                    {% else %}
+                                        <a class="nav-link {% if request.resolver_match.url_name == 'index' %}active{% endif %}"
+                                           href="{% url 'entraide:index' %}">Prochains créneaux</a>
 
-                    {% else %}
-                        <a href="{% url 'entraide:index' %}">Prochains créneaux</a>
+                                        <a class="nav-link {% if request.resolver_match.url_name == 'allskills' %}active{% endif %}"
+                                           href="{% url 'entraide:allskills' %}">Compétences proposées</a>
+                                    {% endif %}
+                                {% endblock %}
+                            </div>
+                       </div>
+                    </nav>
+                </div>
+       {% endblock %}
+</header>
 
-                        <a href="{% url 'entraide:allskills' %}">Compétences proposées</a>
-                    {% endif %}
-                {% endblock %}
-            </nav>
-
-        {% endblock %}
-    </header>
-
-<main>
+<main class="container flex-grow-1 py-4">
     {% if messages %}
         {% for message in messages %}
-            <p class="message {{ message.tags }}">
+           <p class="message {{ message.tags }}">
                 {{ message }}
-            </p>
+           </p>
         {% endfor %}
     {% endif %}
 
     {% block main %}{% endblock %}
 </main>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
+<footer class="footer mt-auto">
+    <div class="container text-center">
+        <div class="footer-title">Biaud'Entraide</div>
+        <div class="footer-description">
+            Un espace dédié au partage de compétences
+        </div>
+        <div class="footer-copyright">
+            © 2026
+        </div>
+    </div>
+</footer>
+
 </html>
