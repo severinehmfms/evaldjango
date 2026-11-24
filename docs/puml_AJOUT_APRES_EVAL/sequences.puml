@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+actor Utilisateur
+
+participant "Navigateur" as Browser
+participant "Routeur Django\n(urls.py)" as URL
+participant "Vue Django\n(views.py)" as View
+participant "ORM Django" as ORM
+database "SQLite" as DB
+
+Utilisateur -> Browser : Consulte la page d'accueil
+Browser -> URL : GET /entraide/
+URL -> View : Appelle index(request)
+
+activate View
+
+View -> ORM : Recherche les prochains créneaux
+ORM -> DB : SELECT sur Schedule
+DB --> ORM : Résultats
+ORM --> View : QuerySet de créneaux
+
+View -> Browser : render(index.html)
+deactivate View
+
+Browser --> Utilisateur : Affiche la page HTML
+
+@enduml

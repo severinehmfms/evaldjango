@@ -1,0 +1,47 @@
+@startuml
+
+class User {
+    username
+    email
+}
+
+class Skill {
+    name_skill: CharField
+    --
+    __str__()
+    get_user_skills()
+}
+
+class UserSkill {
+    user: ForeignKey
+    skill: ForeignKey
+}
+
+class Schedule {
+    skill: ForeignKey
+    name_activity: CharField
+    date_help: DateTimeField
+    user_creator: ForeignKey (nullable)
+    user_helper: ForeignKey (nullable)
+    --
+    __str__()
+    is_expired: bool
+}
+
+' Relations entre les classes
+
+User "1" -- "0..*" UserSkill : user
+Skill "1" -- "0..*" UserSkill : skill
+
+Skill "1" -- "0..*" Schedule : skill
+
+User "0..1" -- "0..*" Schedule : user_creator
+User "0..1" -- "0..*" Schedule : user_helper
+
+note bottom of UserSkill
+  Contrainte :
+  Un seul lien par couple
+  User / Skill
+end note
+
+@enduml
